@@ -8,9 +8,9 @@ function App() {
   const onBtnClick = useCallback(async () => {
     try {
       const response = await customFetch.post("https://jsonplaceholder.typicode.com/posts", dummy);
-      console.log(response);
+      console.log("response", response);
     } catch (err) {
-      console.log(err);
+      console.log("err", err);
     }
   }, []);
   return (
