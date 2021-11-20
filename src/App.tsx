@@ -1,24 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useCallback } from 'react';
 import './App.css';
+import useProgress from './component/useProgress';
+import dummy from './asset/dummy.json'
 
 function App() {
+  const { ProgressBar, customFetch } = useProgress();
+  const onBtnClick = useCallback(async () => {
+    try {
+      const response = await customFetch.post("https://jsonplaceholder.typicode.com/posts", dummy);
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ProgressBar></ProgressBar>
+      <button type="button" onClick={onBtnClick}>POST</button>
     </div>
   );
 }
