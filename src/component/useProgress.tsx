@@ -20,7 +20,7 @@ export default function useProgress() {
 
     const animateBar = useCallback((keyframes) => {
         pBarRef?.current?.animate(keyframes, {
-            duration: 300,
+            duration: 100,
             iterations: 1,
             fill: 'forwards'
         });
@@ -46,7 +46,7 @@ export default function useProgress() {
 
                     // }
                     xhr.onreadystatechange = () => {
-                        if (xhr.readyState === 4) {
+                        if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300) {
                             resolve(xhr.response);
                         } else {
                             reject(xhr.response);
